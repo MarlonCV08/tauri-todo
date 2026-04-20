@@ -12,9 +12,10 @@ interface Project {
   updated_at: string
 }
 
-export const Sidebar = () => {
+interface Props { activeId: number | null; onSelect: (project: { id: number; name: string }) => void }
+
+export const Sidebar = ({ activeId, onSelect }: Props) => {
   const [projects, setProjects] = useState<Project[]>([])
-  const [activeId, setActiveId] = useState<number | null>(null)
   const [isCreating, setIsCreating] = useState(false)
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export const Sidebar = () => {
               id={project.id}
               name={project.name}
               isActive={project.id === activeId}
-              onClick={() => setActiveId(project.id)}
+              onClick={() => onSelect({ id: project.id, name: project.name })}
             />
           ))}
         </ul>
