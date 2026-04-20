@@ -50,6 +50,7 @@ export const Sidebar = () => {
           {projects.map((project) => (
             <SidebarItem
               key={project.id}
+              id={project.id}
               name={project.name}
               isActive={project.id === activeId}
               onClick={() => setActiveId(project.id)}
