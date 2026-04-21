@@ -22,15 +22,15 @@ const STATES: { value: Status; label: string; icon: JSX.Element }[] = [
 ];
 
 const ACTIVE_STYLES: Record<Status, string> = {
-  pending:     "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  in_progress: "bg-blue-100  text-blue-800  dark:bg-blue-900  dark:text-blue-200",
-  completed:   "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+  pending:     "bg-amber-800/40 text-amber-200",
+  in_progress: "bg-blue-800/40 text-blue-200",
+  completed:   "bg-green-800/40 text-green-200",
 };
 
 const ICON_STYLES: Record<Status, string> = {
-  pending:     "text-amber-500 dark:text-amber-400",
-  in_progress: "text-blue-500  dark:text-blue-400",
-  completed:   "text-green-500 dark:text-green-400",
+  pending:     "text-neutral-500",
+  in_progress: "text-neutral-500",
+  completed:   "text-neutral-500",
 };
 
 export const TaskStatus = ({
