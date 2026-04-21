@@ -8,7 +8,8 @@ interface Props {
 
 export const Task = ({ id, status, description, onStatusChange }: Props & { onStatusChange: () => void }) => {
     return (
-        <li className="p-4 rounded-lg bg-neutral-800 flex gap-3 items-center">
+        <li className="p-4 rounded-lg bg-neutral-800 flex gap-3 items-center justify-between transition-all hover:-translate-y-1">
+            <span>{description}</span>
             <TaskStatus
                 status={status}
                 onChange={async (newStatus) => {
@@ -16,7 +17,6 @@ export const Task = ({ id, status, description, onStatusChange }: Props & { onSt
                     onStatusChange()
                 }}
             />
-            <span>{description}</span>
         </li>
     )
 }

@@ -23,8 +23,8 @@ export const ProjectView = ({ project }: { project: { id: number; name: string }
     }, [project.id])
 
     return (
-        <div className="grid grid-cols-12 w-full">
-            <div className="col-span-8 col-start-3 p-10 gap-8 flex flex-col items-center">
+        <div className="grid grid-cols-12 w-full h-screen">
+            <div className="col-span-8 col-start-3 p-10 gap-8 flex flex-col items-center min-h-0">
                 <h2 className="text-lg font-medium">{project.name}</h2>
 
                 <NewTask projectId={project.id} onTaskCreated={loadTasks} />
@@ -33,7 +33,7 @@ export const ProjectView = ({ project }: { project: { id: number; name: string }
                 {tasks.length === 0 ? (
                     <div className="text-neutral-500">No hay tareas para este proyecto.</div>
                 ) : (
-                    <ul className="w-full flex flex-col gap-2">
+                    <ul className="w-full flex flex-col gap-3 rounded-lg overflow-auto min-h-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         {tasks.map((task) => (
                             <Task
                                 key={task.id}
