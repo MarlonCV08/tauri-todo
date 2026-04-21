@@ -8,7 +8,7 @@ import { NavBar } from "./NavBar"
 interface Task {
     id: number
     description: string
-    status: boolean
+    status: 'pending' | 'in_progress' | 'completed'
 }
 
 export const ProjectView = ({ project }: { project: { id: number; name: string } }) => {
@@ -35,7 +35,13 @@ export const ProjectView = ({ project }: { project: { id: number; name: string }
                 ) : (
                     <ul className="w-full flex flex-col gap-2">
                         {tasks.map((task) => (
-                            <Task status={task.status} description={task.description}  />
+                            <Task
+                                key={task.id}
+                                id={task.id}
+                                status={task.status}
+                                description={task.description}
+                                onStatusChange={loadTasks}
+                            />
                         ))}
                     </ul>
                 )}

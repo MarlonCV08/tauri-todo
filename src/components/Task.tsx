@@ -1,12 +1,22 @@
+import { changeTaskStatus } from "../services/tasks";
+import { TaskStatus } from "./TaskStatus";
 interface Props {
-    status: boolean;
+    id: number;
+    status: "pending" | "in_progress" | "completed";
     description: string;
 }
-export const Task = ({ status, description }: Props) => {
+
+export const Task = ({ id, status, description, onStatusChange }: Props & { onStatusChange: () => void }) => {
     return (
-        <li className="p-4 rounded-lg bg-neutral-800">
-            <input type="checkbox" checked={status} />
-            <span> {description} </span>
+        <li className="p-4 rounded-lg bg-neutral-800 flex gap-3 items-center">
+            <TaskStatus
+                status={status}
+                onChange={async (newStatus) => {
+                    await changeTaskStatus(newStatus, id)
+                    onStatusChange()
+                }}
+            />
+            <span>{description}</span>
         </li>
     )
 }

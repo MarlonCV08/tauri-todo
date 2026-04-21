@@ -10,3 +10,8 @@ export const createTask = async (projectId: number, task: string) => {
     await db.execute('INSERT INTO tasks (project_id, description) VALUES (?, ?)', [projectId, task])
     return 'Task created successfully'
 }
+
+export const changeTaskStatus = async (status: 'pending' | 'in_progress' | 'completed', id: number) => {
+    const db = await getDb()
+    await db.execute('UPDATE tasks SET status = ? WHERE id = ?', [status, id])
+}
