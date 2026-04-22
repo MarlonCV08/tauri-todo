@@ -29,7 +29,7 @@ export const NavBar = ({ activeFilter, onFilterChange, onClearCompleted }: NavBa
                         key={value}
                         onClick={() => onFilterChange(value)}
                         className={`rounded px-4 py-1 cursor-pointer transition-colors ${
-                            activeFilter === value ? "bg-neutral-900" : "hover:bg-neutral-700"
+                            activeFilter === value ? "bg-neutral-900" : "hover:bg-neutral-700/70"
                         }`}
                     >
                         {label}
@@ -37,7 +37,7 @@ export const NavBar = ({ activeFilter, onFilterChange, onClearCompleted }: NavBa
                 ))}
             </ul>
             <button
-                className="flex items-center gap-2 bg-neutral-800 px-5 py-3 rounded-lg cursor-pointer hover:bg-neutral-700"
+                className="flex items-center gap-2 bg-neutral-800 border border-neutral-600 px-5 py-3 rounded-lg cursor-pointer hover:bg-neutral-700/70"
                 onClick={handleClear}
             >
                 Clear Completed

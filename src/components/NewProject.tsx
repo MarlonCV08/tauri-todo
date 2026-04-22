@@ -32,7 +32,7 @@ export const NewProject = ({ onSubmit, onCancel }: Props) => {
         onChange={(e) => setName(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Project name..."
-        className="flex-1 min-w-0 bg-neutral-800 text-sm text-white placeholder-neutral-500 rounded-lg px-2 py-1 outline-none border border-neutral-600 focus:border-neutral-400"
+        className="flex-1 min-w-0 bg-neutral-800 text-sm text-white placeholder-neutral-500 rounded-lg px-2 py-1.5 outline-none border border-neutral-600 focus:border-neutral-400"
       />
     </li>
   )

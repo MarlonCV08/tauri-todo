@@ -2,7 +2,7 @@ import { getDb } from "../lib/db"
 
 export const getTasks = async (projectId: number) => {
     const db = await getDb()
-    return await db.select('SELECT * FROM tasks WHERE project_id = ?', [projectId])
+    return await db.select('SELECT * FROM tasks WHERE project_id = ? ORDER BY created_at DESC', [projectId])
 }
 
 export const createTask = async (projectId: number, task: string) => {
