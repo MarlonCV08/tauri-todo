@@ -8,7 +8,7 @@ interface Props {
 
 export const Task = ({ id, status, description, onStatusChange }: Props & { onStatusChange: () => void }) => {
     return (
-        <li className="p-4 rounded-lg bg-neutral-800 flex gap-3 items-center justify-between transition-all hover:-translate-y-1">
+        <li className="p-4 rounded-lg bg-neutral-800 flex gap-3 items-center justify-between">
             <span>{description}</span>
             <TaskStatus
                 status={status}

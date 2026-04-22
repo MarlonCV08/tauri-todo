@@ -15,3 +15,8 @@ export const changeTaskStatus = async (status: 'pending' | 'in_progress' | 'comp
     const db = await getDb()
     await db.execute('UPDATE tasks SET status = ? WHERE id = ?', [status, id])
 }
+
+export const clearCompleteTask = async () => {
+    const db = await getDb()
+    await db.execute("DELETE FROM tasks WHERE status = 'completed'")
+}
