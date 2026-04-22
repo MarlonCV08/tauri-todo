@@ -22,7 +22,7 @@ export const NavBar = ({ activeFilter, onFilterChange, onClearCompleted }: NavBa
     }
 
     return (
-        <nav className="w-full flex justify-between items-center p-2">
+        <nav className="w-full flex justify-between items-center py-2">
             <ul className="flex border bg-neutral-800 border-neutral-600 rounded-lg p-2 gap-2">
                 {filters.map(({ label, value }) => (
                     <li

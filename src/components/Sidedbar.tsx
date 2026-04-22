@@ -18,8 +18,12 @@ export const Sidebar = ({ activeId, onSelect }: Props) => {
   const [projects, setProjects] = useState<Project[]>([])
   const [isCreating, setIsCreating] = useState(false)
 
-  useEffect(() => {
+  const loadProjects = () => {
     getProjects().then((data) => setProjects(data as Project[]))
+  }
+
+  useEffect(() => {
+    loadProjects()
   }, [])
 
   const handleCreate = async (name: string) => {
@@ -55,6 +59,7 @@ export const Sidebar = ({ activeId, onSelect }: Props) => {
               name={project.name}
               isActive={project.id === activeId}
               onClick={() => onSelect({ id: project.id, name: project.name })}
+              onDelete={loadProjects}
             />
           ))}
         </ul>
