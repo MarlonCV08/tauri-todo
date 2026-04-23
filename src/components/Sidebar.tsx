@@ -12,9 +12,13 @@ interface Project {
   updated_at: string
 }
 
-interface Props { activeId: number | null; onSelect: (project: { id: number; name: string }) => void }
+interface Props {
+  activeId: number | null
+  activeProject: { id: number; name: string } | null
+  onSelect: (project: { id: number; name: string }) => void
+}
 
-export const Sidebar = ({ activeId, onSelect }: Props) => {
+export const Sidebar = ({ activeId, activeProject, onSelect }: Props) => {
   const [projects, setProjects] = useState<Project[]>([])
   const [isCreating, setIsCreating] = useState(false)
 
@@ -56,7 +60,7 @@ export const Sidebar = ({ activeId, onSelect }: Props) => {
             <SidebarItem
               key={project.id}
               id={project.id}
-              name={project.name}
+              name={project.id === activeId ? (activeProject?.name ?? project.name) : project.name}
               isActive={project.id === activeId}
               onClick={() => onSelect({ id: project.id, name: project.name })}
               onDelete={loadProjects}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Sidebar } from "./components/Sidedbar";
+import { Sidebar } from "./components/Sidebar";
 import { getDb } from "./lib/db";
 import { ProjectView } from "./components/ProjectView";
 
@@ -14,10 +14,17 @@ function App() {
 
   return (
     <div className="flex h-screen bg-neutral-900 text-neutral-100">
-      <Sidebar activeId={activeProject?.id ?? null} onSelect={setActiveProject} />
+      <Sidebar
+        activeId={activeProject?.id ?? null}
+        activeProject={activeProject}
+        onSelect={setActiveProject}
+      />
       <main className="flex-1">
         {activeProject ? (
-          <ProjectView project={activeProject} />
+          <ProjectView
+            project={activeProject}
+            onProjectRenamed={(id, name) => setActiveProject({ id, name })}
+          />
         ) : (
           <div className="flex items-center justify-center h-full text-neutral-500">
             Selecciona un proyecto
