@@ -3,26 +3,45 @@ import "./App.css";
 import { Sidebar } from "./components/Sidebar";
 import { getDb } from "./lib/db";
 import { ProjectView } from "./components/ProjectView";
+import { getProjects } from "./services/projects";
+
+interface Project {
+  id: number
+  name: string
+  description: string | null
+  created_at: string
+  updated_at: string
+}
 
 function App() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [activeProject, setActiveProject] = useState<{ id: number; name: string } | null>(null)
+
+  const loadProjects = async () => {
+    const data = await getProjects()
+    setProjects(data as Project[])
+  }
 
   useEffect(() => {
     getDb()
+    loadProjects()
   }, [])
-
-  const [activeProject, setActiveProject] = useState<{ id: number; name: string } | null>(null)
 
   return (
     <div className="flex h-screen bg-neutral-900 text-neutral-100">
       <Sidebar
+        projects={projects}
+        reloadProjects={loadProjects}
         activeId={activeProject?.id ?? null}
         activeProject={activeProject}
         onSelect={setActiveProject}
       />
+
       <main className="flex-1">
         {activeProject ? (
           <ProjectView
             project={activeProject}
+            reloadProjects={loadProjects}
             onProjectRenamed={(id, name) => setActiveProject({ id, name })}
           />
         ) : (

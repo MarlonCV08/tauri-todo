@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Plus } from "lucide-react"
 import { SidebarItem } from "./SidebarItem"
 import { NewProject } from "./NewProject"
-import { getProjects, createProject } from "../services/projects"
+import { createProject } from "../services/projects"
 
 interface Project {
   id: number
@@ -13,27 +13,19 @@ interface Project {
 }
 
 interface Props {
+  projects: Project[]
+  reloadProjects: () => void
   activeId: number | null
   activeProject: { id: number; name: string } | null
   onSelect: (project: { id: number; name: string }) => void
 }
 
-export const Sidebar = ({ activeId, activeProject, onSelect }: Props) => {
-  const [projects, setProjects] = useState<Project[]>([])
+export const Sidebar = ({ projects, reloadProjects, activeId, onSelect }: Props) => {
   const [isCreating, setIsCreating] = useState(false)
-
-  const loadProjects = () => {
-    getProjects().then((data) => setProjects(data as Project[]))
-  }
-
-  useEffect(() => {
-    loadProjects()
-  }, [])
 
   const handleCreate = async (name: string) => {
     await createProject(name)
-    const data = await getProjects()
-    setProjects(data as Project[])
+    await reloadProjects()
     setIsCreating(false)
   }
 
@@ -48,6 +40,7 @@ export const Sidebar = ({ activeId, activeProject, onSelect }: Props) => {
           <Plus size={18} />
         </button>
       </section>
+
       <nav className="flex flex-col gap-2">
         <ul className="flex flex-col gap-1">
           {isCreating && (
@@ -56,14 +49,15 @@ export const Sidebar = ({ activeId, activeProject, onSelect }: Props) => {
               onCancel={() => setIsCreating(false)}
             />
           )}
+
           {projects.map((project) => (
             <SidebarItem
               key={project.id}
               id={project.id}
-              name={project.id === activeId ? (activeProject?.name ?? project.name) : project.name}
+              name={project.name}
               isActive={project.id === activeId}
               onClick={() => onSelect({ id: project.id, name: project.name })}
-              onDelete={loadProjects}
+              onDelete={reloadProjects}
             />
           ))}
         </ul>
