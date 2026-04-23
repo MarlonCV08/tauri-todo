@@ -13,11 +13,10 @@ export const NewTask = ({
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault()
         if (!task.trim()) return
-
-        createTask(projectId, task)
+        await createTask(projectId, task)
         setTask("")
         onTaskCreated()
       }}
