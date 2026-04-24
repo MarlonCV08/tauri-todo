@@ -81,9 +81,8 @@ export const ProjectView = ({
     : tasks.filter((task) => task.status === activeFilter)
 
   return (
-    <div className="grid grid-cols-12 w-full h-screen">
-      <div className="col-span-10 col-start-2 md:col-span-8 md:col-start-3 p-10 gap-8 flex flex-col items-center min-h-0">
-
+    <div className="grid grid-cols-12 w-full h-full min-h-0">
+      <div className="col-span-10 col-start-2 md:col-span-8 md:col-start-3 p-10 gap-8 flex flex-col min-h-0 h-full">
         <section className="flex w-full items-center gap-5">
           <div className="bg-neutral-100 rounded-lg p-2">
             <FolderOpen color="#262626" />
@@ -133,11 +132,11 @@ export const ProjectView = ({
         />
 
         {filteredTasks.length === 0 ? (
-          <div className="text-neutral-500 h-full flex items-center justify-center">
+          <div className="text-neutral-500 flex-1 flex items-center justify-center">
             No hay tareas para este proyecto.
           </div>
         ) : (
-          <ul className="w-full flex flex-col gap-3 rounded-lg overflow-auto min-h-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <ul className="w-full flex-1 flex flex-col gap-3 rounded-lg overflow-auto min-h-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {filteredTasks.map((task) => (
               <Task
                 key={task.id}
