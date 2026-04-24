@@ -58,7 +58,7 @@ export const TaskStatus = ({
             ].join(" ")}
           >
             {state.icon}
-            {isActive && <span>{state.label}</span>}
+            {isActive && <span className="hidden lg:inline">{state.label}</span>}
           </button>
         );
       })}
