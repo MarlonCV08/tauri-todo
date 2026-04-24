@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <AppHeader />
       <div className="flex h-full bg-neutral-900 text-neutral-100">
         <Sidebar
@@ -54,7 +54,7 @@ function App() {
           )}
         </main>
       </div>
-    </>
+    </div>
   )
 }
 

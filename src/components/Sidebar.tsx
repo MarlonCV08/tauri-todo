@@ -30,7 +30,7 @@ export const Sidebar = ({ projects, reloadProjects, activeId, onSelect }: Props)
   }
 
   return (
-    <div className="w-64 h-screen bg-neutral-900 p-4 border-r border-neutral-800">
+    <div className="w-64 h-full bg-neutral-900 p-4 border-r border-neutral-800">
       <section className="flex items-center justify-between mb-4">
         <h1>Projects</h1>
         <button
