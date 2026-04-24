@@ -82,7 +82,7 @@ export const ProjectView = ({
 
   return (
     <div className="grid grid-cols-12 w-full h-screen">
-      <div className="col-span-8 col-start-3 p-10 gap-8 flex flex-col items-center min-h-0">
+      <div className="col-span-10 col-start-2 md:col-span-8 md:col-start-3 p-10 gap-8 flex flex-col items-center min-h-0">
 
         <section className="flex w-full items-center gap-5">
           <div className="bg-neutral-100 rounded-lg p-2">

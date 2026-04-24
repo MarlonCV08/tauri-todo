@@ -4,6 +4,7 @@ import { Sidebar } from "./components/Sidebar";
 import { getDb } from "./lib/db";
 import { ProjectView } from "./components/ProjectView";
 import { getProjects } from "./services/projects";
+import { AppHeader } from "./components/AppHeader";
 
 interface Project {
   id: number
@@ -28,29 +29,32 @@ function App() {
   }, [])
 
   return (
-    <div className="flex h-screen bg-neutral-900 text-neutral-100">
-      <Sidebar
-        projects={projects}
-        reloadProjects={loadProjects}
-        activeId={activeProject?.id ?? null}
-        activeProject={activeProject}
-        onSelect={setActiveProject}
-      />
+    <>
+      <AppHeader />
+      <div className="flex h-full bg-neutral-900 text-neutral-100">
+        <Sidebar
+          projects={projects}
+          reloadProjects={loadProjects}
+          activeId={activeProject?.id ?? null}
+          activeProject={activeProject}
+          onSelect={setActiveProject}
+        />
 
-      <main className="flex-1">
-        {activeProject ? (
-          <ProjectView
-            project={activeProject}
-            reloadProjects={loadProjects}
-            onProjectRenamed={(id, name) => setActiveProject({ id, name })}
-          />
-        ) : (
-          <div className="flex items-center justify-center h-full text-neutral-500">
-            Selecciona un proyecto
-          </div>
-        )}
-      </main>
-    </div>
+        <main className="flex-1">
+          {activeProject ? (
+            <ProjectView
+              project={activeProject}
+              reloadProjects={loadProjects}
+              onProjectRenamed={(id, name) => setActiveProject({ id, name })}
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-neutral-500">
+              Selecciona un proyecto
+            </div>
+          )}
+        </main>
+      </div>
+    </>
   )
 }
 
